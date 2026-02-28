@@ -47,4 +47,8 @@ export const api = {
   getOrders: () => request<Order[]>('/orders'),
 
   getOrder: (id: string) => request<Order>(`/orders/${id}`),
+  sendMessage: (body: { name: string; email: string; message: string }) =>
+  request<{ ok: boolean; message: string }>('/messages', {
+    method: 'POST', body: JSON.stringify(body)
+  }),
 };
