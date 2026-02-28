@@ -258,7 +258,7 @@ export default function PaymentPage() {
           {[
             ['Banco', 'Banco Azteca'],
             ['Beneficiario', 'Fernanda Victoria'],
-            ['Cuenta', '4027 6657 7785'],
+            ['Cuenta', '4027 6657 7785 9670'],
             ['Monto exacto', `$${totalAmount.toLocaleString('es-MX')} MXN`],
           ].map(([label, value]) => (
             <div key={label} className="bank-row">
