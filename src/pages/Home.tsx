@@ -13,7 +13,7 @@ export default function Home() {
       {/* Hero */}
       <section className="hero">
         <div className="hero-content fade-up">
-          <span className="hero-badge">✨ Colección 2025</span>
+          <span className="hero-badge">✨ Colección 2026</span>
           <h1>
             Tu estilo,<br />
             <em>tu identidad</em>
