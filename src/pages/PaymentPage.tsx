@@ -135,10 +135,9 @@ export default function PaymentPage() {
     y += 10
 
     const bancoDatos = [
-      ['Banco', 'Banco Artaee'],
-      ['Beneficiario', 'Artaee Store'],
-      ['Cuenta', '1234 5678 9012 3456'],
-      ['CLABE', '012 345 6789 0123 4567 8'],
+      ['Banco', 'Banco Azteca'],
+      ['Beneficiario', 'Fernanda Victoria '],
+      ['Cuenta', '4027 6657 7785 9670'],
     ]
 
     bancoDatos.forEach(([label, value]) => {
