@@ -42,9 +42,19 @@ export default function Orders() {
         <p>Hola, {user?.full_name?.split(' ')[0]}. Aquí están todos tus pedidos.</p>
       </div>
 
-      {error && <div className="error-msg">{error}</div>}
+      {error && (
+        <div className="error-msg">
+          {error}
+          <button
+            style={{ marginLeft: 12, fontSize: '0.8rem', textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer', color: 'inherit' }}
+            onClick={() => { setError(''); setLoading(true); api.getOrders().then(setOrders).catch(e => setError(e.message)).finally(() => setLoading(false)) }}
+          >
+            Reintentar
+          </button>
+        </div>
+      )}
 
-      {orders.length === 0 ? (
+      {!error && orders.length === 0 ? (
         <div className="cart-empty">
           <div style={{ fontSize: '4rem', marginBottom: 16 }}>📦</div>
           <h2>Todavía no tienes pedidos</h2>
@@ -59,7 +69,8 @@ export default function Orders() {
             <div key={order.id} className="order-card fade-up">
               <div className="order-header">
                 <div>
-                  <p className="order-id">Pedido #{order.id.slice(0, 8).toUpperCase()}</p>
+                  {/* FIX: id es número (INT), se convierte a string antes de operar */}
+                  <p className="order-id">Pedido #{String(order.id).padStart(6, '0')}</p>
                   <p style={{ fontSize: '0.82rem', color: 'var(--c-muted)', marginTop: 2 }}>
                     {new Date(order.created_at).toLocaleDateString('es-MX', {
                       year: 'numeric', month: 'long', day: 'numeric'
@@ -70,20 +81,25 @@ export default function Orders() {
                   {STATUS_LABEL[order.status] ?? order.status}
                 </span>
               </div>
+
               <p className="order-total">${Number(order.total).toLocaleString('es-MX')} MXN</p>
+
               <div className="order-items-list">
-                {order.items.map((item, i) => (
+                {order.items?.length ? order.items.map((item, i) => (
                   <span key={i}>
                     {item.product_name} (x{item.quantity})
+                    {item.size ? ` — Talla: ${item.size}` : ''}
                     {i < order.items.length - 1 ? ', ' : ''}
                   </span>
-                ))}
+                )) : <span style={{ color: 'var(--c-muted)' }}>Sin productos registrados</span>}
               </div>
+
               {order.notes && (
                 <p style={{ fontSize: '0.8rem', color: 'var(--c-muted)', marginTop: 8 }}>
                   📝 {order.notes}
                 </p>
               )}
+
               <div style={{ marginTop: 12, padding: '10px 14px', background: 'var(--c-bg2)', borderRadius: 'var(--r-sm)', fontSize: '0.82rem', color: 'var(--c-muted)' }}>
                 ⚠️ Recuerda enviar tu comprobante de transferencia a @artaee.store en Instagram
               </div>
@@ -94,3 +110,4 @@ export default function Orders() {
     </div>
   )
 }
+
