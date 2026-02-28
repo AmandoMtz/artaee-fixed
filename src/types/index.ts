@@ -36,8 +36,9 @@ export interface OrderItem {
   size?: string;
 }
 
+// src/types/index.ts
 export interface Order {
-  id: string;
+  id: number;  // ← asegúrate que sea number, no string
   status: string;
   total: number;
   notes?: string;
