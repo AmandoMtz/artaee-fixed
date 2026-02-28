@@ -1,15 +1,25 @@
 // src/pages/Contact.tsx
 import React, { useState } from 'react'
 import { useToast } from '../context/ToastContext'
+import { api } from '../api/client'
 
 export default function Contact() {
   const { toast } = useToast()
   const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [loading, setLoading] = useState(false)
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
-    toast('¡Mensaje recibido! Te contactaremos pronto 💚', 'success')
-    setForm({ name: '', email: '', message: '' })
+    setLoading(true)
+    try {
+      await api.sendMessage(form)
+      toast('¡Mensaje recibido! Te contactaremos pronto 💚', 'success')
+      setForm({ name: '', email: '', message: '' })
+    } catch (err: any) {
+      toast(err.message ?? 'Error al enviar el mensaje', 'error')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -41,8 +51,13 @@ export default function Contact() {
                 onChange={e => setForm(f => ({ ...f, message: e.target.value }))} required
                 style={{ resize: 'vertical' }} />
             </div>
-            <button className="btn-primary" style={{ width: '100%', justifyContent: 'center' }} type="submit">
-              Enviar mensaje
+            <button
+              className="btn-primary"
+              style={{ width: '100%', justifyContent: 'center', opacity: loading ? 0.7 : 1 }}
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? 'Enviando...' : 'Enviar mensaje'}
             </button>
           </form>
         </div>
