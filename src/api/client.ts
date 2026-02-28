@@ -31,24 +31,22 @@ export const api = {
     request<{ token: string; user: User }>('/auth/register', {
       method: 'POST', body: JSON.stringify(body)
     }),
-
   login: (body: { email: string; password: string }) =>
     request<{ token: string; user: User }>('/auth/login', {
       method: 'POST', body: JSON.stringify(body)
     }),
-
   me: () => request<User>('/auth/me'),
-
   createOrder: (body: { items: CartItem[]; notes?: string }) =>
     request<Order>('/orders', {
       method: 'POST', body: JSON.stringify(body)
     }),
-
   getOrders: () => request<Order[]>('/orders'),
-
   getOrder: (id: string) => request<Order>(`/orders/${id}`),
+
+  // ↓ AGREGA AQUÍ
   sendMessage: (body: { name: string; email: string; message: string }) =>
-  request<{ ok: boolean; message: string }>('/messages', {
-    method: 'POST', body: JSON.stringify(body)
-  }),
+    request<{ ok: boolean; message: string }>('/messages', {
+      method: 'POST', body: JSON.stringify(body)
+    }),
+
 };
