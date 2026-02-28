@@ -202,7 +202,7 @@ export default function PaymentPage() {
             </p>
           )}
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <button className="btn-primary" onClick={generateTicket}>📄 Descargar ticket PDF</button>
+            <button className="btn-primary" onClick={generateTicket}>📄 Descargar ticket en PDF</button>
             <button className="btn-ghost" onClick={() => navigate('/pedidos')}>Ver mis pedidos</button>
             <button className="btn-ghost" onClick={() => navigate('/productos')}>Seguir comprando</button>
           </div>
@@ -256,10 +256,9 @@ export default function PaymentPage() {
         <div className="bank-info">
           <h3>Datos de transferencia</h3>
           {[
-            ['Banco', 'Banco Artaee'],
-            ['Beneficiario', 'Artaee Store'],
-            ['Cuenta', '1234 5678 9012 3456'],
-            ['CLABE', '012 345 6789 0123 4567 8'],
+            ['Banco', 'Banco Azteca'],
+            ['Beneficiario', 'Fernanda Victoria'],
+            ['Cuenta', '4027 6657 7785'],
             ['Monto exacto', `$${totalAmount.toLocaleString('es-MX')} MXN`],
           ].map(([label, value]) => (
             <div key={label} className="bank-row">
