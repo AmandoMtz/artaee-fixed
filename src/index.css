@@ -472,11 +472,17 @@ input, select, textarea { font-family: var(--ff-body); }
 
 /* ── Product Detail ─────────────────────────────────────── */
 .detail-wrapper {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
   padding: 60px 24px;
   max-width: 1100px; margin: 0 auto;
+  align-items: start;
 }
-.detail-gallery { position: sticky; top: 90px; align-self: start; }
+.detail-gallery { 
+  position: sticky; 
+  top: 90px; 
+  align-self: start;
+  height: fit-content;
+}
 .detail-gallery img {
   width: 100%; border-radius: var(--r-lg);
   box-shadow: var(--shadow-md);
