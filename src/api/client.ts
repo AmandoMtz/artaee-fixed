@@ -48,5 +48,6 @@ export const api = {
     request<{ ok: boolean; message: string }>('/messages', {
       method: 'POST', body: JSON.stringify(body)
     }),
+  getStock: () => request<Record<string, boolean>>('/stock'),
 
 };
