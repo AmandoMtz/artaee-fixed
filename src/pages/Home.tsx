@@ -34,7 +34,7 @@ export default function Home() {
 
         <div className="hero-visual fade-up fade-up-2">
           <div className="hero-img-main">
-            <img src="/mochilavante.png" alt="Artaee Collection" />
+            <img src="/vante_bag.png" alt="Artaee Collection" />
           </div>
           <div className="hero-tag">
             <span>Piezas disponibles</span>
