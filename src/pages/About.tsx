@@ -8,7 +8,7 @@ export default function About() {
     <div className="page">
       <div className="about-grid fade-up">
         <div>
-          <img src="/mochilastanding.png" alt="Artaee" className="about-img" />
+            <img src="/gato.png" alt="Artaee" className="about-img" />
         </div>
         <div className="about-text">
           <h2>Artaee Store,<br /><em style={{ fontStyle: 'italic', color: 'var(--c-green)' }}>hecho con amor</em></h2>
